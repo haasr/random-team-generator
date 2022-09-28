@@ -35,6 +35,50 @@ const addPlayer = () => {
   }
 };
 
+const addPlayers = () => {
+  if (document.getElementById("players-list").value === "") {
+    document.getElementById("players-list").focus();
+    return false;
+  }
+  else {
+    let playersString = document.getElementById("players-list").value;
+    let playersList;
+
+    if (playersString.includes("\n")) {
+      playersList = playersString.split("\n");
+    }
+    else if (playersString.includes(";")) {
+      playersList = playersString.split(";");
+    }
+    else if (playersString.includes(",")) {
+      playersList = playersString.split(",");
+    }
+    else {
+      document.getElementById("players-list").focus();
+      return false;
+    }
+
+    playersList.forEach(player => {
+      const newPlayer = {
+        name: player,
+        skill: 1
+      };
+      players.push(newPlayer);
+    });
+
+    // Hide list if no players are there to display.
+    hidepList();
+
+    // Display a list of players.
+    displayList(players, "playerList");
+
+    document.getElementById("player").focus();
+
+    // Don't reload the page on submit.
+    return false;
+  }
+}
+
 // Allow enter key to submit a new player everywhere on the page.
 document.addEventListener("keypress", function (event) {
   if (event.keyCode === 13) {
@@ -139,18 +183,28 @@ const balancedTeams = () => {
 // Function to display a list of the players and teams.
 const displayList = (arr, list) => {
   let i = 1;
-  let result = "";
+  let x = 0;
+  let result = `<div class="bootstrap-row">`;
   if (arr === players) {
     arr.forEach(function (item) {
-      result += `<div class="listItem">
-        <li>
-          <span class="skill liststyle">${item.skill}</span>
-          <span class="name liststyle">${item.name}</span>
-          <button class="delete liststyle" id="${item.name}" onclick="deletePlayer('${item.name}')">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </li>
-      </div>`;
+      if (x%6 == 0) { 
+        result += `</div>`;
+
+        result += `<div class="bootstrap-row">`;
+        preceded = true;
+      }
+
+      result +=
+        `<div style="flex: 1 0 0%; padding: 10px;">
+            <div style="display: inline-flex;">
+            <span class="skill liststyle">${item.skill}</span>
+            <span class="name liststyle">${item.name}</span>
+            <button class="delete liststyle" id="${item.name}" onclick="deletePlayer('${item.name}')">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            </div>
+        </div>`;  
+      x++;
     });
   } else {
     arr.forEach(function (item) {
@@ -164,14 +218,14 @@ const displayList = (arr, list) => {
           elementP += `<span class="name liststyle">${object.name}</span>`;
         }
       });
-      result += `<div class="listItem teams">
-        <li>
+      result += `<div class="listItem" style="flex: 1 0 0%;">
+        <div>
           <div class="row">
             <span class="number liststyle"> ${i} </span>
             ${elementS}
           </div>
           <div class="team liststyle"> ${elementP} </div> 
-        </li>
+        </div>
       </div>`;
       i++;
     });

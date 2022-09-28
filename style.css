@@ -166,7 +166,6 @@ html,
 body {
   width: 100%;
   font-family: "Roboto", sans-serif;
-  display: flex;
   flex-flow: column wrap;
   align-items: center;
 }
@@ -208,6 +207,15 @@ body {
   border-radius: 10px;
   overflow: visible;
   box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.2);
+}
+
+.clr-yellow {
+  background-color: #e0a801;
+  color: #000000;
+}
+
+.clr-yellow:hover {
+  color: #ffffff;
 }
 
 .button:hover {
@@ -256,7 +264,6 @@ body {
 
 .teamsForm {
   width: 250px;
-  display: inline-flex;
   justify-content: space-between;
 }
 
@@ -265,7 +272,7 @@ body {
   height: 50px;
 }
 
-input {
+input, textarea {
   border-radius: 10px;
   border-style: none;
   background-color: #ebebeb;
@@ -392,9 +399,7 @@ h3 {
 }
 
 .team {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 210px;
+  display: inline-table;
   min-height: 50px;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -407,6 +412,25 @@ h3 {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
+}
+
+.bootstrap-row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+
+.bootstrap-row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
 }
 
 .teamskills {
@@ -424,4 +448,12 @@ h3 {
 
 #tList {
   display: none;
+}
+
+@media only screen and (min-width: 840px) {
+  .left-border-when-large {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 4px dotted #7b78787b;
+  }
 }

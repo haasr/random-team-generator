@@ -13,20 +13,21 @@
     
     <div class="flex-container center">
       <!-- Form with textfield for the playernames and skilllevel (will be added). -->
-      <form onsubmit="return addPlayer()" class="wrap">
-        <div class="block center">
-          <label for="player">Playername</label>
-          <input 
-            type="text" 
-            name="player" 
-            id="player" 
-            placeholder="Playername" 
-            maxlength="15" 
-            required 
-            autofocus
-          />
-        </div>
-      </form>
+      <div>
+        <form onsubmit="return addPlayer()" class="wrap">
+          <div class="block center">
+            <label for="player">Playername</label>
+            <input 
+              type="text" 
+              name="player" 
+              id="player" 
+              placeholder="Playername" 
+              maxlength="15" 
+              required 
+              autofocus
+            />
+          </div>
+        </form>
 
       <form onsubmit="return false">
         <div class="block center">
@@ -43,14 +44,33 @@
         </div>
       </form>
 
-      <div class="block center">
+      <div class="block center" style="margin-top: 60px;">
         <label>Submit</label>
         <!-- Button to create the teams. -->
         <div>
-          <button id="submit" class="button" type="button" onclick="return addPlayer()">Add player</button>
+          <button id="submit" class="button" type="button" onclick="return addPlayer()">Add single player</button>
         </div>
       </div>
 
+    </div>
+
+    <div class="center left-border-when-large" style="height: 300px;">
+      <form onsubmit="return addPlayers()" class="wrap">
+        <div class="block center">
+          <label for="players-list">Add list of playernames</label>
+          <textarea type="text" name="players-list" id="players-list" placeholder="Names can be separated by newlines, semicolons, or commas."
+            id="players-list" rows="7" maxlength="10000"></textarea>
+        </div>
+      </form>
+      <div class="block center" style="margin-top: 135px;">
+        <label>Submit players list</label>
+        <div>
+          <button id="submit" class="button clr-yellow" type="button" onclick="return addPlayers()">Add players from list</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="center left-border-when-large">
       <form onsubmit="return false">
         <div class="block center">
           <label for="numberOfTeams">Teams</label>
@@ -78,18 +98,20 @@
         </div>
       </div>
     </div>
-    
-    <div id="list-container">
-      <!-- Playerlist. -->
-      <div id="pList" class="list">
-        <h3>Players</h3>
-        <p><ol id=playerList class="list"></ol></p>
-      </div>
-      
-      <!-- Teamlist. -->
-      <div id="tList" class="list">
-        <h3>Teams</h3>
-        <p><ol id=teamList class="list"></ol></p>
+
+    <div class="center" style="width: 90%; display: block!important;">
+      <div id="list-container">
+        <!-- Playerlist. -->
+        <div id="pList" class="list">
+          <h3>Players</h3>
+          <p><ol id=playerList class="list"></ol></p>
+        </div>
+        
+        <!-- Teamlist. -->
+        <div id="tList" class="list">
+          <h3>Teams</h3>
+          <p><ol id=teamList class="list"></div></p>
+        </div>
       </div>
     </div>
   </body>
