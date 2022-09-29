@@ -1,4 +1,5 @@
 let players = [];
+playerIDCounter = -2147483648;
 
 const onStart = () => {
   hidepList(players);
@@ -14,7 +15,8 @@ const addPlayer = () => {
     return false;
   } else {
     const newPlayer = {
-      name: document.getElementById("player").value,
+      playerID: "player-" + String(playerIDCounter++),
+      name: document.getElementById("player").value.trim(),
       skill: Number(document.getElementById("skill").value),
     };
 
@@ -44,7 +46,10 @@ const addPlayers = () => {
     let playersString = document.getElementById("players-list").value;
     let playersList;
 
-    if (playersString.includes("\n")) {
+    if (playersString.includes("\r\n")) {
+      playersList = playersString.split("\r\n");
+    }
+    else if (playersString.includes("\n")) {
       playersList = playersString.split("\n");
     }
     else if (playersString.includes(";")) {
@@ -60,7 +65,8 @@ const addPlayers = () => {
 
     playersList.forEach(player => {
       const newPlayer = {
-        name: player,
+        playerID: "player-" + String(playerIDCounter++),
+        name: player.trim(),
         skill: 1
       };
       players.push(newPlayer);
@@ -178,6 +184,8 @@ const balancedTeams = () => {
 
   // Reset the teams array.
   teams = [];
+
+  document.getElementById("tList").scrollIntoView({behavior: 'smooth'});
 };
 
 // Function to display a list of the players and teams.
@@ -197,9 +205,9 @@ const displayList = (arr, list) => {
       result +=
         `<div style="flex: 1 0 0%; padding: 10px;">
             <div style="display: inline-flex;">
-            <span class="skill liststyle">${item.skill}</span>
-            <span class="name liststyle">${item.name}</span>
-            <button class="delete liststyle" id="${item.name}" onclick="deletePlayer('${item.name}')">
+            <span class="skill liststyle-left-br">${item.skill}</span>
+            <span class="name liststyle-no-br">${item.name}</span>
+            <button class="delete liststyle-right-br" id="${item.playerID}" onclick="deletePlayer('${item.playerID}')">
               <i class="fas fa-trash-alt"></i>
             </button>
             </div>
@@ -218,10 +226,10 @@ const displayList = (arr, list) => {
           elementP += `<span class="name liststyle">${object.name}</span>`;
         }
       });
-      result += `<div class="listItem" style="flex: 1 0 0%;">
+      result += `<div class="listItem border-green-solid" style="flex: 1 0 0%; margin: 5px; padding: 5px; box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.2);">
         <div>
           <div class="row">
-            <span class="number liststyle"> ${i} </span>
+            <span class="number liststyle" style="font-size: 1.5rem; font-weight: 600;"> Team ${i} </span>
             ${elementS}
           </div>
           <div class="team liststyle"> ${elementP} </div> 
@@ -238,7 +246,7 @@ const deletePlayer = (id) => {
   const object = document.querySelector(`#${id}`);
   const index = players
     .map(function (e) {
-      return e.name;
+      return e.playerID;
     })
     .indexOf(id);
   if (index > -1) {
@@ -275,6 +283,8 @@ const randomTeams = () => {
 
   // Reset the teams array.
   teams = [];
+
+  document.getElementById("tList").scrollIntoView({behavior: 'smooth'});
 };
 
 /* Work in progress */
