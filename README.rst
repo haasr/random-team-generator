@@ -5,6 +5,9 @@ student-team-generator
 Tool for conveniently generating random teams of students from a list of names.
 Forked from Raybawn (https://github.com/Raybawn/random-team-generator) and modified for classroom use.
 
+User the Generator
+##################
+
 `Use Student Team Generator <https://htmlpreview.github.io/?https://github.com/haasr/student-team-generator/blob/master/index.html>`_
 
 
