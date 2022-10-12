@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="./script.js"></script>
-    <title>Team Builder</title>
+    <title>Student Team Generator</title>
   </head>
   <body onload="onStart();" class="center">
     
-    <h1>Team Builder</h1>
+    <h1>Student Team Generator</h1>
 
     <div class="flex-container center">
       <!-- Form with textfield for the playernames and skilllevel (will be added). -->
@@ -60,7 +60,7 @@
         <div class="block center">
           <label for="players-list">Add list of student names</label>
           <textarea type="text" name="players-list" id="players-list" placeholder="Names can be separated by newlines, semicolons, or commas."
-            id="players-list" rows="8" cols="19" maxlength="10000" style="resize: none;"></textarea>
+            id="players-list" rows="8" cols="15" maxlength="10000" style="resize: none;"></textarea>
         </div>
       </form>
       <div class="block center" style="margin-top: 184px;">
@@ -109,7 +109,7 @@
       <div id="list-container">
         <!-- Playerlist. -->
         <div id="pList" class="list border-green-solid">
-          <h2>Players</h2>
+          <h2>Students</h2>
           <p><ol id=playerList class="list"></ol></p>
         </div>
         
