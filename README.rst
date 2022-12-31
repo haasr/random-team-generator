@@ -19,7 +19,7 @@ Use the Generator
     :width: 700
     :alt:  Showcase students list view
 
-.. image:: ./readme_images/generator-teams-compact-view.png
+.. image:: ./readme_images/generator-teams-view.png
     :width: 700
     :alt:  Showcase teams view
 
@@ -33,3 +33,5 @@ Added Features
 - More natural padding, border, use of contrast, and depth
 - Improved responsiveness of layout
 - Implemented player IDs in the JavaScript to work around the problem of names with spaces breaking the *delete* functionality
+- Things are much more square this go-around
+- CoLoR GRaDieNT

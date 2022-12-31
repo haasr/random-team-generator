@@ -1,124 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <script src="./script.js"></script>
+<head>
     <title>Student Team Generator</title>
-  </head>
-  <body onload="onStart();" class="center">
-    
-    <h1>Student Team Generator</h1>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index follow">
 
-    <div class="flex-container center">
-      <!-- Form with textfield for the playernames and skilllevel (will be added). -->
-      <div>
-        <form onsubmit="return addPlayer()" class="wrap">
-          <div class="block center">
-            <label for="player">Student name</label>
-            <input 
-              type="text" 
-              name="player" 
-              id="player" 
-              placeholder="Student name" 
-              maxlength="15" 
-              required 
-              autofocus
-            />
-          </div>
-        </form>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap" rel="stylesheet">
 
-      <form onsubmit="return false">
-        <div class="block center" style="margin-top: 15px;">
-          <label for="skill">Skill</label>
-          <input
-            type="range"
-            min="1"
-            max="5"
-            name="skill"
-            id="skill"
-            class="slider"
-            value="1"
-          />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/forms.css">
+</head>
+<body onload="onStart();" class="bg-gradient-white-light-blue">
+    <div class="page-container">
+        <div class="content-wrap" {% block cw_style %}{% endblock cw_style %}>
+            <div class="form-row">
+              <div class="col-25"></div>
+              <div class="col-75"></div>
+            </div>
+            <div class="container-lg p-4">
+              <div class="lightly-pad-container text-white text-break bg-gradient-right-crimson-blue br-2 shadow">
+                <h1 class="text-center textshadow">Student Team Generator</h1>
+              </div>
+              <div class="lightly-pad-container bg-light fs-400 text-break border-brand-blue br-2">
+                <div class="row">
+                  <div class="col-lg">
+                    <div class="lightly-pad-container bg-brand-blue shadow">
+                      <h3 class="text-center text-white ff-sans-bolder br-2 textshadow">Add individual student</h3>
+                    </div>
+                    <!-- Form with textfield for the playernames and skilllevel (will be added). -->
+                    <div class="form-container" style="margin-top: 0px;">
+                      <form onsubmit="return addPlayer()" class="wrap">
+                        <div class="form-row">
+                          <div class="col-25">
+                            <label class="forms-label" for="player">Student name</label>
+                          </div>
+                          <div class="col-75">
+                            <input type="text" name="player" id="player" placeholder="Student name" maxlength="15" required autofocus>
+                          </div>
+                        </div>
+                      </form>
+                      <form onsubmit="return false">
+                        <div class="form-row">
+                          <div class="col-25">
+                            <label for="skill">Skill</label>
+                          </div>
+                          <div class="col-75">
+                            <input type="range" min="1" max="5" name="skill" id="skill" class="slider" value="1">
+                          </div>
+                        </div>
+                      </form>
+                      <div class="form-row" style="margin-top: 60px;">
+                        <div class="col-25"></div>
+                        <div class="col-75">
+                          <button class="bttn-brand-blue" id="submit" type="button" onclick="return addPlayer()">Add single student</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg">
+                    <div class="lightly-pad-container bg-brand-blue shadow">
+                      <h3 class="text-center text-white ff-sans-bolder br-2 textshadow">Add students from list</h3>
+                    </div>
+                    <div class="form-container" style="margin-top: 0px;">
+                      <form onsubmit="return addPlayers()" class="wrap">
+                        <label for="players-list">Student names list</label>
+                        <textarea type="text" name="players-list" id="players-list" placeholder="Names can be separated by newlines, semicolons, or commas."
+                          id="players-list" rows="8" cols="15" maxlength="10000" style="resize: none;"></textarea>
+                      </form>
+                      <div class="form-row mt-3">
+                        <div class="col-25"></div>
+                        <div class="col-75">
+                          <button class="bttn-brand-orange" id="submit" type="button" onclick="return addPlayers()">Add students from list</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lightly-pad-container bg-brand-blue mt-4 br-2 shadow">
+                  <h3 class="text-center text-white ff-sans-bolder textshadow">Teams Settings</h3>
+                </div>
+                <div class="border-dotted-brand-blue br-2 p-3">
+                  <div class="row bg-light">
+                    <div class="col-lg">
+                      <form onsubmit="return false">
+                        <div class="p-1 bg-accent text-dark">
+                          <h4 class="text-center">Teams</h4>
+                        </div>
+                        <div class="form-container p-2" style="margin-top: 0px;">
+                          <div class="d-flex justify-content-center p-2">
+                            <div class="teamsForm form-row"> 
+                              <button class="form bttn-white mr-1" type="button" onclick="subNumberOfTeams()"><i class="fas fa-minus"></i></button>
+                              <input type="number" min="1" max="99" name="numberOfTeams" id="numberOfTeams" value="4"/>
+                              <button class="form bttn-white ml-1" type="button" onclick="addNumberOfTeams()"><i class="fas fa-plus"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md">
+                      <div class="p-1 bg-accent text-dark">
+                        <h4 class="text-center">Create</h4>
+                      </div>
+                      <div class="form-container p-2" style="margin-top: 0px;">
+                        <div class="d-flex justify-content-center p-2">
+                          <button class="bttn-white" type="button" onclick="randomTeams()">Random</button>
+                          <button class="bttn-white ml-4" type="button" onclick="balancedTeams()">Balanced</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <div class="p-1 bg-accent text-dark">
+                        <h4 class="text-center">Reset</h4>
+                      </div>
+                      <div class="form-container p-2" style="margin-top: 0px;">
+                        <div class="d-flex justify-content-center p-2">
+                          <button class="bttn-outline-danger" type="button" onclick="window.location.reload();">↺ Reset</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="justify-content-center br-2 mt-3 border-dotted-brand-blue" id="listBorder">
+                  <!-- Playerlist. -->
+                  <div id="pList">
+                    <div class="p-2 bg-accent text-dark br-2 shadow">
+                      <h2 class="text-center">Students</h2>
+                    </div>
+                    <div id="list-container">
+                      <div class="bg-white list">
+                        <p><ol id=playerList class="list"></ol></p>
+                      </div>
+                  </div>
+                  <!-- Teamlist. -->
+                  <div id="tList">
+                      <div class="p-2 bg-accent text-dark br-2 shadow">
+                        <h2 class="text-center">Teams</h2>
+                      </div>
+                      <div class="bg-white list">
+                        <p><ol id=teamList class="list"></div></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
-      </form>
-
-      <div class="block center" style="margin-top: 100px;">
-        <!-- Button to create the teams. -->
-        <div>
-          <button id="submit" class="button" type="button" onclick="return addPlayer()">Add single student</button>
-        </div>
-      </div>
-
     </div>
-
-    <div class="center left-border-when-large" style="height: 325px;">
-      <form onsubmit="return addPlayers()" class="wrap">
-        <div class="block center">
-          <label for="players-list">Add list of student names</label>
-          <textarea type="text" name="players-list" id="players-list" placeholder="Names can be separated by newlines, semicolons, or commas."
-            id="players-list" rows="8" cols="15" maxlength="10000" style="resize: none;"></textarea>
-        </div>
-      </form>
-      <div class="block center" style="margin-top: 184px;">
-        <div>
-          <button id="submit" class="button clr-yellow" type="button" onclick="return addPlayers()">Add students from list</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="center left-border-when-large">
-      <form onsubmit="return false">
-        <div class="block center">
-          <label for="numberOfTeams">Teams</label>
-          <div class="teamsForm"> 
-            <button class="form button" type="button" onclick="subNumberOfTeams()"><i class="fas fa-minus"></i></button>
-            <input
-              type="number"
-              min="1"
-              max="99"
-              name="numberOfTeams"
-              id="numberOfTeams"
-              value="1"
-            />
-            <button class="form button" type="button" onclick="addNumberOfTeams()"><i class="fas fa-plus"></i></button>
-          </div>
-        </div>
-      </form>
-
-      <div class="block center" style="margin-top: 15px;">
-        <label>Create</label>
-        <!-- Button to create the teams. -->
-        <div class="create nowrap" style="margin-bottom: 15px;">
-          <button class="button" type="button" onclick="randomTeams()">Random</button>
-          <button class="button" type="button" onclick="balancedTeams()">Balanced</button>
-        </div>
-        
-        <label>Reset</label>
-        <div class="center nowrap">
-          <button class="button clr-red" type="button" onclick="window.location.reload();"
-            style="width: 120px; height: 50px;">↺ Reset</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="center" style="width: 90%; margin-top: 45px; display: block!important;">
-      <div id="list-container">
-        <!-- Playerlist. -->
-        <div id="pList" class="list border-green-solid">
-          <h2>Students</h2>
-          <p><ol id=playerList class="list"></ol></p>
-        </div>
-        
-        <!-- Teamlist. -->
-        <div id="tList" class="list border-green-solid">
-          <h2>Teams</h2>
-          <p><ol id=teamList class="list"></div></p>
-        </div>
-      </div>
-    </div>
-  </body>
+    <script src="./js/studentTeamGenerator.js"></script>
+</body>
 </html>

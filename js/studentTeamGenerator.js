@@ -192,13 +192,13 @@ const balancedTeams = () => {
 const displayList = (arr, list) => {
   let i = 1;
   let x = 0;
-  let result = `<div class="bootstrap-row">`;
+  let result = `<div class="row">`;
   if (arr === players) {
     arr.forEach(function (item) {
       if (x%6 == 0) { 
         result += `</div>`;
 
-        result += `<div class="bootstrap-row">`;
+        result += `<div class="row">`;
         preceded = true;
       }
 
@@ -220,16 +220,16 @@ const displayList = (arr, list) => {
       elementP = "";
       item.forEach(function (object) {
         if (object.teamSkill) {
-          elementS += `<span class="skill green teamskills liststyle"> ${object.teamSkill} </span>`;
+          elementS += `<span class="skill green teamskills liststyle ml-3 mr-3"> ${object.teamSkill} </span>`;
           // return false;
         } else {
           elementP += `<span class="name liststyle">${object.name}</span>`;
         }
       });
-      result += `<div class="listItem border-green-solid" style="flex: 1 0 0%; margin: 5px; padding: 5px; box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.2);">
+      result += `<div class="listItem border-brand-blue br-2" style="flex: 1 0 0%; margin: 5px; padding: 5px; box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.2);">
         <div>
           <div class="row">
-            <span class="number liststyle" style="font-size: 1.5rem; font-weight: 600;"> Team ${i} </span>
+            <span class="number liststyle ml-3 mr-3 shadow" style="font-size: 1.4rem; font-weight: 600;">Team ${i} </span>
             ${elementS}
           </div>
           <div class="team liststyle"> ${elementP} </div> 
@@ -290,21 +290,28 @@ const randomTeams = () => {
 /* Work in progress */
 // Check if there are players to display, if not, hide the list element.
 const hidepList = (players) => {
+  let listBorder = document.getElementById("listBorder");
   let pList = document.getElementById("pList");
 
   if (players) {
+    listBorder.style.display = "none";
     pList.style.display = "none";
   } else {
+    listBorder.style.display = "block";
     pList.style.display = "block";
   }
 };
 
 // Check if there are teams to display, if not, hide the list element.
 const hidetList = (teams) => {
+  let listBorder = document.getElementById("listBorder");
   let tList = document.getElementById("tList");
+
   if (teams !== 0) {
+    listBorder.style.display = "block";
     tList.style.display = "block";
   } else if (teams === 0) {
+    listBorder.style.display = "block";
     tList.style.display = "none";
   }
 };
